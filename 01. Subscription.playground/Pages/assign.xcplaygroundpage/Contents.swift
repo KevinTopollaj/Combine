@@ -1,8 +1,10 @@
 //: [Previous](@previous)
 
-// assign(to:, on:)
+// assign() -> Is added only for iOS 14
 
+// assign(to:, on:)
 // func assign<Root>(to keyPath: ReferenceWritableKeyPath<Root, Self.Output>, on object: Root) -> AnyCancellable
+
 // ReferenceWritableKeyPath only avaliable for property in class
 
 // enables you to assign the received value to a KVO-compliant property of an object
@@ -25,7 +27,18 @@ class MyClass {
 
 var myObject = MyClass()
 let myRange = (0...2)
-let pub = myRange.publisher
+let publisher = myRange.publisher
+
+let subscription = publisher
+  // an operator that will transform every value of the Publisher
+  .map { $0 * 10 }
+  // a Subscriber that will assign a value to a specific property in inside a class Object
+  .assign(to: \.anInt, on: myObject)
+
+  // We can recive the same result using the sink Subscriber
+//  .sink { value in
+//    myObject.anInt = value
+//  }
 
 
 //: [Next](@next)
