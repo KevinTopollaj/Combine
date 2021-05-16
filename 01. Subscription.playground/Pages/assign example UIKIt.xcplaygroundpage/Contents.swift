@@ -29,8 +29,17 @@ class TextFieldViewController : UIViewController, UITextFieldDelegate {
         label = UILabel()
         view.addSubview(label)
         
-        //use Combine: assign(to,on)
-        label.text = textMessage.value
+        //use Combine to create assign(to,on) Subscribtion on the textMessage Publisher
+      textMessage
+        // use the compactMap Operator which will unwrap values and discard them if they are nil
+        .compactMap { $0 }
+        .map { "You typed: \($0)" }
+        // use the assign(to,on) Subscriber to assign the value to the text of the label
+        .assign(to: \.text, on: label)
+        // store the created subscription so you can keep reference to it
+        .store(in: &subsrciptions)
+      
+        
 
         self.view = view
 
