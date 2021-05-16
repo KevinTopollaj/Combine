@@ -95,11 +95,13 @@ class MyClass {
 
 // compare to playground page assign
 let obj = MyClass()
-let pub = (0...2).publisher
+let publisher = (0...2).publisher
 let subscriber = Subscribers.Assign(object: obj, keyPath: \MyClass.anInt)
 
 //this does not return a subscription/cancellable
- pub.receive(subscriber: subscriber)
+publisher
+  .print("👀")
+  .receive(subscriber: subscriber)
 
 
 

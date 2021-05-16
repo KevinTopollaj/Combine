@@ -10,11 +10,12 @@ import PlaygroundSupport
 PlaygroundPage.current.needsIndefiniteExecution = true
 
 let subscription = [1, 2, 3].publisher
-    .sink(receiveCompletion: {
-            print("receive completion: \($0)")
-    },receiveValue: {
-        print("receive value \($0)")
-    })
+  .print("->")
+  .sink(receiveCompletion: {
+    print("receive completion: \($0)")
+  },receiveValue: {
+    print("receive value \($0)")
+  })
 
 
 
