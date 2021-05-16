@@ -26,7 +26,16 @@ class ViewModel {
     var subscriptions = Set<AnyCancellable>()
     
     init() {
-        
+        user
+          // will give me only the id property of the User object
+          .map(\.id)
+          // assign that to the userID property of the ViewModel class
+//          .assign(to: \.userID, on: self) // WARNING: will cause a memory leak every time!!!
+          .sink(receiveValue: { [unowned self] value in
+            self.userID = value
+          })
+          // keep a reference of the created subscription
+          .store(in: &subscriptions)
     }
     
     deinit {
@@ -34,9 +43,10 @@ class ViewModel {
     }
 }
 
-var viewModel = ViewModel()
+var viewModel: ViewModel? = ViewModel()
+viewModel?.user.send(User(name: "Anna", id: 2))
 
-
+viewModel = nil
 
 
 
