@@ -17,38 +17,35 @@ import PlaygroundSupport
 PlaygroundPage.current.needsIndefiniteExecution = true
 
 class MyModel: ObservableObject {
-    @Published var lastUpdated: Date = Date()
-    init() {
-         Timer.publish(every: 1.0, on: .main, in: .common)
-             .autoconnect()
-    }
+  
+  @Published var lastUpdated: Date = Date()
+  
+  init() {
+    Timer.publish(every: 1.0, on: .main, in: .common)
+      .autoconnect()
+      // inout parameter is used whith &, and the @Published property is used with $
+      .assign(to: &$lastUpdated)
+  }
 }
-
-
-
-
-
 
 
 import SwiftUI
 
 struct ClockView: View {
-    @StateObject var clockModel = MyModel()
-    
-    //var dateFormatter: DateFormatter {
-    //    let dateFormatter = DateFormatter()
-    //    dateFormatter.dateFormat = "HH:mm:ss"
-    //    return dateFormatter
-    //}
-    
-    var body: some View {
-        Text("enter date here")
-            .fixedSize()
-            .padding(50)
-    }
+  @StateObject var clockModel = MyModel()
+  
+  var dateFormatter: DateFormatter {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm:ss"
+    return dateFormatter
+  }
+  
+  var body: some View {
+    Text(dateFormatter.string(from: clockModel.lastUpdated))
+      .fixedSize()
+      .padding(50)
+  }
 }
-
-
 
 PlaygroundPage.current.setLiveView(ClockView())
 
