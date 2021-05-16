@@ -13,6 +13,7 @@ var cancellables = Set<AnyCancellable>()
 let intSubject = PassthroughSubject<Int, Never>()
 
 intSubject
+  .subscribe(on: DispatchQueue.global())
   .sink(receiveValue: { value in
     print(value)
     print(Thread.current)
