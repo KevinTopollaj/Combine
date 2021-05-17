@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' buildActiveScheme='true'>
+    <pages>
+        <page name='Intro'/>
+        <page name='CurrentValueSubject'/>
+        <page name='PassthroughSubject'/>
+        <page name='Multiple Publisher example'/>
+        <page name='@Published'/>
+        <page name='SwiftUI specific'/>
+        <page name='Sequence'/>
+        <page name='Sequence example url'/>
+        <page name='Just'/>
+        <page name='Future - special'/>
+        <page name='Deferred'/>
+        <page name='Future example file loading'/>
+        <page name='Future example* Firebase auth'/>
+        <page name='Future example* push notifications'/>
+        <page name='eraseToAnyPublisher'/>
+        <page name='func to create Publisher'/>
+        <page name='Fail'/>
+        <page name='Fail example func'/>
+        <page name='Fail example load file'/>
+        <page name='Empty'/>
+        <page name='Record'/>
+        <page name='Timer'/>
+        <page name='URLSession dataTaskPublisher'/>
+        <page name='NotificationCenter'/>
+        <page name='NotificationCenter example UIKit'/>
+        <page name='KVO publisher'/>
+        <page name='KVO publisher UIKit'/>
+    </pages>
+</playground>
