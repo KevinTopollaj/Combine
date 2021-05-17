@@ -4,7 +4,7 @@ import PlaygroundSupport
 
 PlaygroundPage.current.needsIndefiniteExecution = true
 
-//Subject - Publisher that you can continously send new values down
+//Subject - Publisher that you can continously send new values down stream.
 
 // PassthroughSubject
 // use for starting action/process, equivalent to func
@@ -12,14 +12,19 @@ PlaygroundPage.current.needsIndefiniteExecution = true
 let newUserNameEntered = PassthroughSubject<String, Never>()
 
 
-// get the value for newUserNameEntered
+// we can't get the value for newUserNameEntered because it does not hold a starter value
 
 // subscribe to Subject
+let subscriprion = newUserNameEntered.sink {
+  print("completion: \($0)")
+} receiveValue: { value in
+  print("recived value: \(value)")
+}
 
 // passing down new values with Subject
+newUserNameEntered.send("Bob")
 
 // sending completion finished with Subject
-    
-
+newUserNameEntered.send(completion: .finished)
 
 
