@@ -4,6 +4,7 @@ import Combine
 class AddNewViewController: UIViewController {
 
     // get reference to viewmodel
+  var taskViewModel: TaskListModel?
     
     var text: String = ""
     
@@ -25,7 +26,7 @@ class AddNewViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         // create new task from textfield
-
+      taskViewModel?.addNewTask.send(text)
         dismiss()
     }
     
