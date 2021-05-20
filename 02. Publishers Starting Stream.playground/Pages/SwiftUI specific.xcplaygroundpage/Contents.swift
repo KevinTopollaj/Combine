@@ -33,6 +33,13 @@ let viewModel = ViewModel()
 // ViewModel class conforms to ObservableObject protocol
  //let objectWillChange = PassthroughSubject<Void, Never>()
 
+// will observe and be called whenever the ViewModel will change
+//viewModel.objectWillChange.send()
 
+let subscription = viewModel.objectWillChange.sink { _ in
+  print("objectWillChange was send")
+}
+
+viewModel.userNames.append("Anna")
 
 //: [Next](@next)
